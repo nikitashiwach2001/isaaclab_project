@@ -8,6 +8,7 @@ Train a TurtleBot to move straight forward using PPO in Isaac Lab.
 
 2. Install this package:
 ```bash
+git clone https://github.com/nikitashiwach2001/isaaclab_project.git
 python -m pip install -e source/go_straight
 ```
 
