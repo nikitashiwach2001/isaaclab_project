@@ -177,8 +177,7 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
 
     dt = env.unwrapped.step_dt
 
-
-    action_repeat = 1  # hold same action for 10 steps
+    action_repeat =1  # hold same action for 10 steps
     speed_factor = args_cli.speed_factor
 
     # -----------------------------
@@ -258,3 +257,41 @@ if __name__ == "__main__":
     #     sleep_time = dt - (time.time() - start_time)
     #     if args_cli.real_time and sleep_time > 0:
     #         time.sleep(sleep_time)
+
+
+
+#######################################################################################################################
+''' original  code'''
+    # action_repeat  1  # hold same action for 10 steps
+    # speed_factor = args_cli.speed_factor
+
+    # # -----------------------------
+    # # Play loop: multiple episodes
+    # # -----------------------------
+    # for ep in range(args_cli.episodes):
+    #     obs, _ = env.reset()  # reset returns (obs, info) tuple
+    #     timestep = 0
+    #     max_steps = int(20.0 / dt)  # 20 seconds per episode
+    #     last_actions = None
+    #     episode_start_time = time.time()
+    #     print(f"\n[INFO] Starting episode {ep+1}/{args_cli.episodes}")
+
+    #     while simulation_app.is_running() and timestep < max_steps:
+    #         start_time = time.time()
+    #         with torch.no_grad():
+    #             if timestep % action_repeat == 0 or last_actions is None:
+    #                 last_actions = policy(obs) * speed_factor
+    #             obs, _, dones, _ = env.step(last_actions)  # RslRlVecEnvWrapper returns 4 values
+    #             policy_nn.reset(dones)
+
+    #             if dones.any():
+    #                 print(f"[INFO] Episode {ep+1} done at step {timestep}")
+
+    #         timestep += 1
+    #         sleep_time = dt - (time.time() - start_time)
+    #         if args_cli.real_time and sleep_time > 0:
+    #             time.sleep(sleep_time)
+
+    #     wall_clock_duration = time.time() - episode_start_time
+    #     episode_run_time = timestep * dt
+    #     print(f"[INFO] Episode {ep+1} finished after {timestep} steps | Episode run time: {episode_run_time:.2f}s | Wall clock: {wall_clock_duration:.2f}s")
